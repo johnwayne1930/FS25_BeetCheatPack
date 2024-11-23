@@ -21,7 +21,7 @@
             <storePack>STARTER_GRAPE</storePack>
             <storePack>STARTER_OLIVE</storePack>
         </storePacks>
-        <image>store_tpn140.png</image>
+        <image>tpn140/store_tpn140.png</image>
         <price>4500</price>
         <lifetime>600</lifetime>
         <rotation>0</rotation>
@@ -39,7 +39,7 @@
 
     <base>
         <typeDesc>$l10n_typeDesc_mulcher</typeDesc>
-        <filename>tpn140.i3d</filename>
+        <filename>tpn140/tpn140.i3d</filename>
         <size width="1.65" length="1.5" height="1.05" lengthOffset="0.25"/>
         <speedLimit value="12"/>
         <components>
