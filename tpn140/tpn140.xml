@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<vehicle type="mulcher" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../shared/xml/schema/vehicle.xsd">
+    <annotation>Copyright (C) GIANTS Software GmbH, All Rights Reserved.</annotation>
+
+    <storeData>
+        <name>TPN 140</name>
+        <specs>
+            <neededPower>70</neededPower>
+            <workingWidth>3.2</workingWidth>
+            <combination xmlFilename="$data/vehicles/landini/seriesREX4/seriesREX4.xml"/>
+            <combination xmlFilename="$data/vehicles/newHolland/tk4/tk4.xml"/>
+            <combination xmlFilename="$data/vehicles/fendt/vario200/vario200.xml"/>
+            <combination xmlFilename="$data/vehicles/antonioCarraro/tony10900TTR/tony10900TTR.xml"/>
+            <combination xmlFilename="$data/vehicles/antonioCarraro/mach4R/mach4R.xml"/>
+        </specs>
+        <functions>
+            <function>$l10n_function_mulcher</function>
+            <function>$l10n_function_vineOliveTool</function>
+        </functions>
+        <storePacks>
+            <storePack>STARTER_GRAPE</storePack>
+            <storePack>STARTER_OLIVE</storePack>
+        </storePacks>
+        <image>store_tpn140.png</image>
+        <price>4500</price>
+        <lifetime>600</lifetime>
+        <rotation>0</rotation>
+        <brand>TMCCANCELA</brand>
+        <category>mulchers grapeTools</category>
+        <shopTranslationOffset>0 -0.004 0</shopTranslationOffset>
+        <shopRotationOffset>1.174 0 0</shopRotationOffset>
+        <vertexBufferMemoryUsage>321280</vertexBufferMemoryUsage>
+        <indexBufferMemoryUsage>84480</indexBufferMemoryUsage>
+        <textureMemoryUsage>327680</textureMemoryUsage>
+        <instanceVertexBufferMemoryUsage>0</instanceVertexBufferMemoryUsage>
+        <instanceIndexBufferMemoryUsage>0</instanceIndexBufferMemoryUsage>
+        <audioMemoryUsage>0</audioMemoryUsage>
+    </storeData>
+
+    <base>
+        <typeDesc>$l10n_typeDesc_mulcher</typeDesc>
+        <filename>tpn140.i3d</filename>
+        <size width="1.65" length="1.5" height="1.05" lengthOffset="0.25"/>
+        <speedLimit value="12"/>
+        <components>
+            <component centerOfMass="0 0.2 0" solverIterationCount="15" mass="283"/>
+        </components>
+        <schemaOverlay attacherJointPosition="0 0" name="IMPLEMENT" />
+        <mapHotspot type="TOOL" />
+    </base>
+
+    <wheels>
+        <wheelConfigurations>
+            <wheelConfiguration name="$l10n_configuration_valueDefault" price="0" saveId="DEFAULT">
+                <wheels>
+                    <wheel>
+                        <physics restLoad="0.2" repr="wheel01" radius="0.08" width="0.1" forcePointRatio="0.35" initialCompression="20" suspTravel="0.05" spring="10" damper="5" frictionScale="0.1" yOffset="0.005"/>
+                    </wheel>
+                    <wheel>
+                        <physics restLoad="0.2" repr="wheel02" radius="0.08" width="0.1" forcePointRatio="0.35" initialCompression="20" suspTravel="0.05" spring="10" damper="5" frictionScale="0.1" yOffset="0.005"/>
+                    </wheel>
+                </wheels>
+            </wheelConfiguration>
+        </wheelConfigurations>
+    </wheels>
+
+    <speedRotatingParts>
+        <speedRotatingPart node="roll01" radius="0.1" groundReferenceNodeIndex="1" onlyActiveWhenLowered="true" />
+    </speedRotatingParts>
+
+    <attachable>
+        <inputAttacherJoints>
+            <inputAttacherJoint node="attacherJoint" jointType="implement" topReferenceNode="topReferenceNode" lowerRotationOffset="-2" upperRotationOffset="10" lowerRotLimitScale="0 0 0" upperRotLimitScale="0 0 0" lowerTransLimitScale="0 1 0" allowsLowering="true">
+                <distanceToGround lower="0.3" upper="0.7"/>
+                <bottomArm categories="1" ballType="1" />
+            </inputAttacherJoint>
+        </inputAttacherJoints>
+        <support animationName="moveSupport" />
+    </attachable>
+
+    <powerTakeOffs>
+        <input inputAttacherJointIndices="1" inputNode="ptoInputNode" detachNode="ptoDetachNode" aboveAttacher="true">
+            <objectChange node="ptoHolder" rotationActive="0 0 0" rotationInactive="-20.969 36.333 28.484"/>
+        </input>
+    </powerTakeOffs>
+
+    <powerConsumer forceNode="tpn140_main_component1" ptoRpm="500" neededMaxPtoPower="22"/>
+
+    <groundReferenceNodes>
+        <groundReferenceNode node="groundReferenceNode" forceFactor="1" threshold="0.15"/>
+    </groundReferenceNodes>
+
+    <workAreas>
+        <workArea type="mulcher" functionName="processMulcherArea" disableBackwards="false">
+            <area startNode="workAreaStart" widthNode="workAreaWidth" heightNode="workAreaHeight"/>
+            <groundReferenceNode index="1"/>
+            <onlyActiveWhenLowered value="true"/>
+        </workArea>
+    </workAreas>
+
+    <animations>
+        <animation name="moveSupport">
+            <part node="supportCol" startTime="0" endTime="0.2" startTrans="0 0.22 0" endTrans="0 0 0"/>
+        </animation>
+    </animations>
+
+    <mulcher>
+        <effects>
+            <effect workAreaIndex="1">
+                <effectNode effectClass="TypedMotionPathEffect" effectType="MULCHER" linkNode="mulcherEffectNode">
+                    <motionPathEffect textureFilename="$data/vehicles/tmcCancela/tpn140/mulcherEffectArray.dds" numRows="16" rowLength="8" minFade="0.15" shapeScale="0.2" maxShapeScale="1.2"/>
+                </effectNode>
+                <effectNode effectNode="smokeEmitter" effectClass="ParticleEffect" particleType="smoke" materialType="smokeParticle" worldSpace="false" emitCountScale="0.5"/>
+            </effect>
+        </effects>
+        <sounds>
+            <work template="crushingStubbles" linkNode="tpn140_main_component1" />
+        </sounds>
+    </mulcher>
+
+    <windBending>
+        <windBendingNodes>
+            <windBendingNode node="cover01" maxBending="0.05" maxBendingSpeed="40"/>
+        </windBendingNodes>
+    </windBending>
+
+    <turnOnVehicle turnOffIfNotAllowed="true">
+        <animationNodes>
+            <animationNode node="mulcher" rotSpeed="-2500" rotAxis="1" turnOnFadeTime="2" turnOffFadeTime="8" />
+        </animationNodes>
+
+        <sounds>
+            <start template="mulcherStart" />
+            <work template="mulcherLoop" />
+            <stop template="mulcherStop" />
+        </sounds>
+    </turnOnVehicle>
+
+    <ai>
+        <needsLowering value="true"/>
+        <areaMarkers leftNode="aiMarkerLeft" rightNode="aiMarkerRight" backNode="aiMarkerBack"/>
+        <collisionTrigger useSize="true"/>
+        <agentAttachment useSize="true"/>
+        <isVineyardTool value="true" betweenRows="true"/>
+    </ai>
+
+    <foliageBending>
+        <bendingNode minX="-0.78" maxX="0.83" minZ="-0.5" maxZ="0.55" yOffset="0.25"/>
+    </foliageBending>
+
+    <wearable wearDuration="480" workMultiplier="5" fieldMultiplier="2"/>
+    <washable dirtDuration="90" washDuration="1" workMultiplier="6" fieldMultiplier="2"/>
+
+    <i3dMappings>
+        <i3dMapping id="tpn140_main_component1" node="0>" />
+        <i3dMapping id="tpn140_vis" node="0>0" />
+        <i3dMapping id="attacherJoint" node="0>0|0|0" />
+        <i3dMapping id="topReferenceNode" node="0>0|0|1" />
+        <i3dMapping id="ptoInputNode" node="0>0|0|2|0" />
+        <i3dMapping id="ptoDetachNode" node="0>0|0|2|1" />
+        <i3dMapping id="ptoHolder" node="0>0|0|2|2" />
+        <i3dMapping id="supportCol" node="0>0|0|3" />
+        <i3dMapping id="wheel01" node="0>0|1|0" />
+        <i3dMapping id="wheel02" node="0>0|1|1" />
+        <i3dMapping id="roll01" node="0>0|2|0" />
+        <i3dMapping id="mulcher" node="0>0|2|1" />
+        <i3dMapping id="cover01" node="0>0|2|2" />
+        <i3dMapping id="workAreaStart" node="0>0|3|0" />
+        <i3dMapping id="workAreaWidth" node="0>0|3|1" />
+        <i3dMapping id="workAreaHeight" node="0>0|3|2" />
+        <i3dMapping id="groundReferenceNode" node="0>0|3|3" />
+        <i3dMapping id="aiMarkerLeft" node="0>0|4|0" />
+        <i3dMapping id="aiMarkerRight" node="0>0|4|1" />
+        <i3dMapping id="aiMarkerBack" node="0>0|4|2" />
+        <i3dMapping id="aiCollisionNode" node="0>0|4|3" />
+        <i3dMapping id="smokeEmitter" node="0>0|5|0" />
+        <i3dMapping id="mulcherEffectNode" node="0>0|5|1" />
+    </i3dMappings>
+</vehicle>

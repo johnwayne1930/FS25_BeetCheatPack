@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="92">
+	<author>johnwayne1930</author>
+	<version>1.0.0.0</version>
+	
+	<title>
+		<en>Beet Cheat Pack</en>
+	</title>
+	
+	<description>
+<en><![CDATA[
+Beet implements with modified working width.
+Ideal for processing beet rows in one pass.
+Helper, CP, GPS compatible. 
+
+TMC Cancela TPN 140 
+Price: 4,500$
+Required power: 70 hp
+Working width: 3.2 m
+Max. working speed: 12 kph
+
+Agrisem Disc-O-Vigne V
+Price: 7,500$
+Required power: 65 hp
+Working width: 3.2 m
+Max. working speed: 12 kph
+]]></en>
+<de><![CDATA[
+Plantagen Geräte mit modifizierter Arbeitsbreite.
+Ideal um Plantagenreihen in einem durchgang zu bearbeiten.
+Helfer, CP, GPS kompatibel.
+
+TMC Cancela TPN 140
+Preis: 4.500€
+Benötigte Leistung: 70 PS
+Arbeitsbreite: 3,2 m
+Arbeitsgeschwindigkeit: 12 km/h 
+
+Agrisem Disc-O-Vigne V
+Preis: 7.500€
+Benötigte Leistung: 65 PS
+Arbeitsbreite: 3,2 m
+Arbeitsgeschwindigkeit: 12 km/h 
+]]></de>
+	</description>
+	
+	<iconFilename>icon_beetCheatPack.png</iconFilename>
+	<multiplayer supported="true"/>
+	
+	 <storeItems>
+		<storeItem xmlFilename="tpn140/tpn140.xml"/>
+		<storeItem xmlFilename="discOVigne/discOVigne.xml"/>
+	</storeItems>
+</modDesc>

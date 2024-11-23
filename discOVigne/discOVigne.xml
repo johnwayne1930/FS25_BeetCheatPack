@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<vehicle type="cultivator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../shared/xml/schema/vehicle.xsd">
+    <annotation>Copyright (C) GIANTS Software GmbH, All Rights Reserved.</annotation>
+
+    <storeData>
+        <name>Disc-O-Vigne V</name>
+        <specs>
+            <neededPower>65</neededPower>
+            <workingWidth>3.2</workingWidth>
+            <combination filterCategory="weights" filterSpec="weight" filterSpecMin="400" filterSpecMax="450"/>
+            <combination xmlFilename="$data/vehicles/landini/seriesREX4/seriesREX4.xml"/>
+            <combination xmlFilename="$data/vehicles/fendt/vario200/vario200.xml"/>
+            <combination xmlFilename="$data/vehicles/antonioCarraro/tony10900TTR/tony10900TTR.xml"/>
+            <combination xmlFilename="$data/vehicles/antonioCarraro/mach4R/mach4R.xml"/>
+        </specs>
+        <functions>
+            <function>$l10n_function_subsoiler</function>
+            <function>$l10n_function_vineOliveTool</function>
+        </functions>
+        <storePacks>
+            <storePack>STARTER_GRAPE</storePack>
+            <storePack>STARTER_OLIVE</storePack>
+        </storePacks>
+        <image>store_discOVigne.png</image>
+        <price>7500</price>
+        <lifetime>600</lifetime>
+        <rotation>0</rotation>
+        <brand>AGRISEM</brand>
+        <category>subsoilers grapeTools</category>
+        <shopTranslationOffset>0 -0.068 0</shopTranslationOffset>
+        <shopRotationOffset>-3.651 0 0</shopRotationOffset>
+        <vertexBufferMemoryUsage>923648</vertexBufferMemoryUsage>
+        <indexBufferMemoryUsage>228864</indexBufferMemoryUsage>
+        <textureMemoryUsage>589824</textureMemoryUsage>
+        <instanceVertexBufferMemoryUsage>0</instanceVertexBufferMemoryUsage>
+        <instanceIndexBufferMemoryUsage>0</instanceIndexBufferMemoryUsage>
+        <audioMemoryUsage>0</audioMemoryUsage>
+    </storeData>
+
+    <base>
+        <typeDesc>$l10n_typeDesc_cultivator</typeDesc>
+        <filename>discOVigne.i3d</filename>
+        <size width="1.7" length="2.4" height="1.35" lengthOffset="-0.1"/>
+        <speedLimit value="12"/>
+        <components>
+            <component centerOfMass="0 0.3 0" solverIterationCount="10" mass="750"/>
+        </components>
+        <schemaOverlay attacherJointPosition="0 0" name="IMPLEMENT"/>
+        <mapHotspot type="TOOL"/>
+    </base>
+
+    <wheels>
+        <wheelConfigurations>
+            <wheelConfiguration name="$l10n_configuration_valueDefault" price="0">
+                <wheels hasSurfaceSounds="false">
+                    <wheel>
+                        <physics restLoad="0.45" repr="wheel" radius="0.2" width="1.5" forcePointRatio="0.2" initialCompression="20" suspTravel="0.05" spring="35" damper="10" mass="0.1" rotationDamping="0.002"/>
+                    </wheel>
+                </wheels>
+            </wheelConfiguration>
+        </wheelConfigurations>
+    </wheels>
+
+    <speedRotatingParts>
+        <speedRotatingPart node="roll"        radius="0.22"  wheelIndex="1" />
+        <speedRotatingPart shaderNode="discs" radius="-0.22" wheelIndex="1" />
+    </speedRotatingParts>
+
+    <attachable>
+        <inputAttacherJoints>
+            <inputAttacherJoint node="attacherJoint" jointType="implement" topReferenceNode="topReferenceNode" allowsLowering="true" lowerRotLimitScale="0.025 0 0.6" upperRotationOffset="10" lowerRotationOffset="0" rotLimitThreshold="0.88" transLimitThreshold="0.88">
+                <distanceToGround lower="0.35" upper="0.9" />
+                <bottomArm categories="2" ballType="2" />
+            </inputAttacherJoint>
+        </inputAttacherJoints>
+        <support animationName="moveSupport" />
+    </attachable>
+
+    <connectionHoses>
+        <hose inputAttacherJointIndices="1" type="hydraulicIn" node="hydraulicIn01" adapterNode="hydraulicIn01_connector" length="1.25" diameter="0.02">
+            <objectChange node="hydraulicIn01_detached" visibilityActive="false" visibilityInactive="true"/>
+        </hose>
+        <hose inputAttacherJointIndices="1" type="hydraulicOut" node="hydraulicOut01" adapterNode="hydraulicOut01_connector" length="1.25" diameter="0.02">
+            <objectChange node="hydraulicOut01_detached" visibilityActive="false" visibilityInactive="true"/>
+        </hose>
+    </connectionHoses>
+
+    <powerConsumer neededMinPtoPower="0" neededMaxPtoPower="0" forceNode="discOVigne_main_component1" maxForce="7" />
+
+    <groundReferenceNodes>
+        <groundReferenceNode node="groundReferenceNode" forceFactor="1" threshold="0.2" depthNode="depthNode" chargeValue="1" />
+    </groundReferenceNodes>
+
+    <workAreas>
+        <workArea type="cultivator" functionName="processCultivatorArea" >
+            <area startNode="workAreaStart" widthNode="workAreaWidth" heightNode="workAreaHeight" />
+            <groundReferenceNode index="1" />
+            <onlyActiveWhenLowered value="true"/>
+        </workArea>
+    </workAreas>
+
+    <workParticles>
+        <effect workAreaIndex="1">
+            <effectNode effectClass="CultivatorMotionPathEffect" effectType="CULTIVATOR" linkNode="sweepEffectLinkNode01">
+                <motionPathEffect textureFilename="$data/effects/cultivator/arrays/sharedCultivatorSweepArray01.dds" numRows="20" rowLength="18" minFade="0.07" isCultivatorSweepEffect="true" />
+            </effectNode>
+            <effectNode effectClass="CultivatorMotionPathEffect" effectType="CULTIVATOR" linkNode="sweepEffectLinkNode02">
+                <motionPathEffect textureFilename="$data/effects/cultivator/arrays/sharedCultivatorSweepArray01.dds" numRows="20" rowLength="18" minFade="0.07" isCultivatorSweepEffect="true" />
+            </effectNode>
+            <effectNode effectClass="CultivatorMotionPathEffect" effectType="CULTIVATOR" linkNode="sweepEffectLinkNode03">
+                <motionPathEffect textureFilename="$data/effects/cultivator/arrays/sharedCultivatorSweepArray01.dds" numRows="20" rowLength="18" minFade="0.07" isCultivatorSweepEffect="true" />
+            </effectNode>
+
+            <effectNode effectClass="CultivatorMotionPathEffect" effectType="CULTIVATOR" linkNode="rollerEffect01LinkNode">
+                <motionPathEffect textureFilename="$data/vehicles/agrisem/discOVigne/rollerEffect01Array.dds" numRows="20" rowLength="18" minFade="0.07" speedScale="1" density="1" shapeScale="0.85" maxShapeScale="1.0"/>
+            </effectNode>
+            <effectNode effectClass="CultivatorMotionPathEffect" effectType="CULTIVATOR" linkNode="discEffect01LinkNode">
+                <motionPathEffect textureFilename="$data/vehicles/agrisem/discOVigne/discEffect01Array.dds" numRows="30" rowLength="18" minFade="0.07"/>
+            </effectNode>
+        </effect>
+
+        <particle>
+            <node node="smokeEmitter" refNodeIndex="1" particleType="SOIL_SMOKE" worldSpace="false"/>
+        </particle>
+    </workParticles>
+
+    <animations>
+        <animation name="moveSupport">
+            <part node="supportCol" startTime="0" duration="0.2" startTrans="0 0.25 0" endTrans="0 0 0" />
+        </animation>
+    </animations>
+
+    <cultivator isSubsoiler="true" useDeepMode="false">
+        <directionNode node="0>" />
+        <onlyActiveWhenLowered value="true"/>
+        <sounds>
+            <work template="defaultCultivatorWork" />
+            <work template="defaultPlowWork" />
+            <work template="meadowRollerWork" />
+        </sounds>
+    </cultivator>
+
+    <ai>
+        <areaMarkers leftNode="aiMarkerLeft" rightNode="aiMarkerRight" backNode="aiMarkerBack" />
+        <needsLowering value="true"/>
+        <agentAttachment width="1.7" height="1.35" length="2.3" lengthOffset="-0.12"/>
+        <isVineyardTool value="true" betweenRows="true"/>
+    </ai>
+
+    <foliageBending>
+        <bendingNode minX="-0.85" maxX="0.85" minZ="-1.3" maxZ="1.1" yOffset="0.45" />
+    </foliageBending>
+
+    <wearable wearDuration="480" workMultiplier="5" fieldMultiplier="2"/>
+    <washable dirtDuration="90" washDuration="1" workMultiplier="4" fieldMultiplier="2"/>
+
+    <i3dMappings>
+        <i3dMapping id="discOVigne_main_component1" node="0>" />
+        <i3dMapping id="discOVigne_vis" node="0>0" />
+        <i3dMapping id="wheel" node="0>0|0" />
+        <i3dMapping id="supportCol" node="0>0|1|0" />
+        <i3dMapping id="attacherJoint" node="0>0|1|1" />
+        <i3dMapping id="topReferenceNode" node="0>0|1|2" />
+        <i3dMapping id="hydraulicIn01_detached" node="0>0|1|3|0" />
+        <i3dMapping id="hydraulicIn01_connector" node="0>0|1|3|0|0" />
+        <i3dMapping id="hydraulicOut01_detached" node="0>0|1|3|1" />
+        <i3dMapping id="hydraulicOut01_connector" node="0>0|1|3|1|0" />
+        <i3dMapping id="hydraulicIn01" node="0>0|1|3|2" />
+        <i3dMapping id="hydraulicOut01" node="0>0|1|3|3" />
+        <i3dMapping id="roll" node="0>0|2|0" />
+        <i3dMapping id="discs" node="0>0|2|1" />
+        <i3dMapping id="workAreaStart" node="0>0|3|0" />
+        <i3dMapping id="workAreaWidth" node="0>0|3|1" />
+        <i3dMapping id="workAreaHeight" node="0>0|3|2" />
+        <i3dMapping id="groundReferenceNode" node="0>0|3|3" />
+        <i3dMapping id="depthNode" node="0>0|3|4" />
+        <i3dMapping id="aiMarkerLeft" node="0>0|4|0" />
+        <i3dMapping id="aiMarkerRight" node="0>0|4|1" />
+        <i3dMapping id="aiMarkerBack" node="0>0|4|2" />
+        <i3dMapping id="smokeEmitter" node="0>0|5|0" />
+        <i3dMapping id="sweepEffectLinkNode01" node="0>0|5|1" />
+        <i3dMapping id="sweepEffectLinkNode02" node="0>0|5|2" />
+        <i3dMapping id="sweepEffectLinkNode03" node="0>0|5|3" />
+        <i3dMapping id="rollerEffect01LinkNode" node="0>0|5|4" />
+        <i3dMapping id="discEffect01LinkNode" node="0>0|5|5" />
+    </i3dMappings>
+</vehicle>
